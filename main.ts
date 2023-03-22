@@ -669,12 +669,7 @@ namespace newland {
     facedetEvt = handler
   }
 
-  //% blockId=newland_loadobjectdetection block="Newland Load Object detectio"
-  //% group="AI" weight=53
-  // export function newland_loadobjectdetection() {
-  //   let str = `K50`
-  //   serial.writeLine(str)
-  // }
+
 
   //% blockId=newland_loadobjectdetection block="Newland Load Object detectio%dir"
   //% group="AI" weight=98
