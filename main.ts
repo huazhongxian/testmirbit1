@@ -76,6 +76,19 @@ namespace newland {
     Back = 2,
   }
 
+
+  export enum AiDetection {
+    //% block=Standard
+    Standard = 1,
+    //% block=Mask
+    Mask = 2,
+    //% block=Refuse
+    Refuse = 3,
+    //% block=LicensePlate
+    LicensePlate = 4,
+  }
+
+
   export enum screenDirection {
     //% block=Front
     Front = 0,
@@ -323,8 +336,8 @@ namespace newland {
   export function newland_init(tx: SerialPin, rx: SerialPin): void {
     serial.redirect(tx, rx, BaudRate.BaudRate115200)
     // basic.pause(500)
-     serial.setRxBufferSize(192)
-     serial.setTxBufferSize(64)
+    serial.setTxBufferSize(128)
+    serial.setRxBufferSize(128)
     serial.readString()
     serial.writeString('\n\n')
     // take control of the ext serial port from Newland
@@ -341,6 +354,15 @@ namespace newland {
     basic.pause(100)
   }
 
+
+  //% blockId=newland_screen_direction block="Newland screen Dir%dir"
+  //% group="Basic" weight=98
+  export function newland_screen_direction(dir: screenDirection): void {
+    serial.readString()
+    let str = `K7 ${dir}`
+    serial.writeLine(str)
+    basic.pause(1000)
+  }
 
 
   //% blockId=newland_camera_switch block="Newland camera Dir%dir"
@@ -649,9 +671,17 @@ namespace newland {
 
   //% blockId=newland_loadobjectdetection block="Newland Load Object detectio"
   //% group="AI" weight=53
-  export function newland_loadobjectdetection() {
-    let str = `K50`
+  // export function newland_loadobjectdetection() {
+  //   let str = `K50`
+  //   serial.writeLine(str)
+  // }
+
+  //% blockId=newland_loadobjectdetection block="Newland Load Object detectio%dir"
+  //% group="AI" weight=98
+  export function newland_loadobjectdetection(dir: AiDetection): void {
+    let str = `K50 ${dir}`
     serial.writeLine(str)
+    basic.pause(100)
   }
 
   /**
@@ -709,8 +739,8 @@ namespace newland {
   export function me66_init(tx: SerialPin, rx: SerialPin): void {
     serial.redirect(tx, rx, BaudRate.BaudRate115200)
     serial.readString()
-    serial.setRxBufferSize(192)
-    serial.setTxBufferSize(64)
+    serial.setTxBufferSize(128)
+    serial.setRxBufferSize(128)
     serial.writeString('\n\n')
     basic.pause(300)
   }
