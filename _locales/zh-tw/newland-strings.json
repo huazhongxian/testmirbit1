@@ -68,6 +68,12 @@
     "newland.LcdDirection.Front|block":"前置攝像頭",
     "newland.LcdDirection.Land|block":"橫屏",
 
+    "newland.AiDetection.Standard|block":"標準檢測",
+    "newland.AiDetection.Mask|block":"口罩檢測",
+    "newland.AiDetection.Refuse|block":"垃圾分類",
+    "newland.AiDetection.LicensePlate|block":"車牌檢測",
+
+
     "newland.screenDirection.Back|block":"橫屏",
     "newland.screenDirection.Front|block":"豎屏",
     "newland.cameraDirection.On|block":"開啟",
